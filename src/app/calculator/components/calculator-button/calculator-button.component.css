@@ -1,0 +1,6 @@
+/* @apply forma parte de la sintaxis de Tailwind CSS, específicamente la funcionalidad que permite aplicar clases utilitarias de Tailwind CSS dentro de un archivo CSS */
+.is-command{
+  @apply bg-indigo-700 bg-opacity-20;
+}
+
+
