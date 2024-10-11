@@ -1,6 +1,7 @@
 
-import { ChangeDetectionStrategy, Component, viewChildren,  } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, viewChildren,  } from '@angular/core';
 import { CalculatorButtonComponent } from '../calculator-button/calculator-button.component';
+import { CalculatorService } from '../../services/calculator.service';
 
 @Component({
   selector: 'calculator',
@@ -18,10 +19,18 @@ import { CalculatorButtonComponent } from '../calculator-button/calculator-butto
 })
 export class CalculatorComponent {
 
+  private calculatorServive = inject(CalculatorService);
+  // Se usa `computed` para crear propiedades reactivas basadas en las señales definidas ene l servicio CalculatorService. Esto significa que las propiedades reactivas (`resultText`, `subResultText`, y `lastOperator`) se actualizarán automáticamente cada vez que cambien las señales en el servicio.
+  public resultText = computed(() => this.calculatorServive.resultText());
+  public subResultText = computed(() => this.calculatorServive.subResultText());
+  public lastOperator = computed(() => this.calculatorServive.lastOperator());
+
+
+
   public calculatorButtons = viewChildren(CalculatorButtonComponent) //quiero que busque todos los CalculatorButtonComponent, que en nuestro calculator.component.html tengo un CalculatorButtonComponent para cada tecla de la calculadora.
 
   handleClick(key:string) { //Este es un método que recibe un parámetro key, que será el valor de la tecla presionada en el teclado.
-    console.log({key})
+    this.calculatorServive.constructNumber(key);
   }
 
 
