@@ -4,3 +4,8 @@
 }
 
 
+.is-pressed {
+  @apply bg-indigo-800 bg-opacity-20;
+}
+
+
