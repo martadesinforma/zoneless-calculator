@@ -7,27 +7,23 @@
 
 4. Content Projection:  En el archivo calculator.component.html vamos a tener insertado el componente calculator-button. En el archivo calculator-button.component.html vamos a tener escrito ` <ng-content></ng-content>`. El texto entre las etiquetas <calculator-button></calculator-button> es proyectado dentro del botón en calculator-button.component.html gracias a <ng-content>.
 
-5. input Signals: input() permite que el componente hijo (CalculatorButtonComponent) reciba un valor desde el componente padre (calculator.component.html). En este caso, el componente hijo CalculatorButtonComponent va a recibir del componente padre CalculatorComponent  las propiedades isCommand y isDoubleSize.
+5. Host bindings: Se utiliza el decorador @HostBinding  para vincular dinámicamente una clase CSS al host element del componente en función de una condición. En este caso, se va a utiliza en el componente CalculatorButtonComponent (en su ts) para que se aplique la clase w-2/4 en el selector <calculator-button></calculator-button> si isDoubleSize es true.
 
-6. Host bindings: Se utiliza el decorador @HostBinding  para vincular dinámicamente una clase CSS al host element del componente en función de una condición. En este caso, se va a utiliza en el componente CalculatorButtonComponent (en su ts) para que se aplique la clase w-2/4 en el selector <calculator-button></calculator-button> si isDoubleSize es true.
+6. input Signals: input() permite que el componente hijo (CalculatorButtonComponent) reciba un valor desde el componente padre (calculator.component.html). En este caso, el componente hijo CalculatorButtonComponent va a recibir del componente padre CalculatorComponent  las propiedades isCommand y isDoubleSize.
 
-Output Emitter Refs
 
-Signals ViewChild
+7. output Signals: output() permite que el componente adre (calculator.component.html) reciba un valor desde el componente hijo (calculator-button.component.ts). En este caso, el componente padre CalculatorComponent va a recibir del componente hijo CalculatorButtonComponent la funcion  handleClick() que muestra el texto que está dentro de cada boton de la calculadora.
 
-Signal ViewChildren
+8. Signals ViewChild: viewChild() se usa para obtener una referencia a un elemento HTML  dentro de la plantilla del componente. En este caso se va a usar en el calculator-button.component.ts para acceder al elemento con el id #button del calculator-button.component.html
 
-Host Property - Condicional
+9. Signal ViewChildren: viewChildren() se usa para obtener muchas referencias a un elemento HTML  dentro de la plantilla del componente. En este caso se va a usar en el calculator.component.ts para acceder a todos los CalculatorButtonComponent, ya que en nuestro calculator.component.html tengo un CalculatorButtonComponent para cada tecla de la calculadora.
 
-Remover Hostlisterners y HostBindings
 
-Servicios con señales
+10. Servicios con señales. Se usa en el método constructNumber() del servicio calculator.service.ts
 
-Computed Signals
+11. Computed Signals: Se van a utilizar en el calculator.component.ts. Se usa `computed` para crear propiedades reactivas basadas en las señales definidas en el servicio CalculatorService. Esto significa que las propiedades reactivas (`resultText`, `subResultText`, y `lastOperator`) se actualizarán automáticamente cada vez que cambien las señales en el servicio.
 
-Realizar cálculos y operaciones
 
-Validaciones y consideraciones
 
 
 # Estructura de esta aplicación:
