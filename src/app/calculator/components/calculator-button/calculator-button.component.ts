@@ -34,7 +34,7 @@ export class CalculatorButtonComponent {
 
 
 
-  //Para poder emitirle un evento al padre utilizamos output(). Este evento siempre se va a estar emitiendo pero puede no estar escuchandolo el padre (el padre puede estar suscrito o no). Si el padre se sucribe al evento del 'calculator-button', siempre lo hace en su html
+  //Para poder emitirle un evento al padre utilizamos output(). Este evento siempre se va a estar emitiendo pero puede no estar escuchandolo el padre (el padre puede estar suscrito o no). Si el padre se suscribe al evento del 'calculator-button', siempre lo hace en su html
   public onClick = output<string>();
 
   //viewChild() se usa para obtener una referencia a un elemento HTML  dentro de la plantilla del componente.
