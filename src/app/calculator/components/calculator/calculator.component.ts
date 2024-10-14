@@ -20,14 +20,14 @@ import { CalculatorService } from '../../services/calculator.service';
 export class CalculatorComponent {
 
   private calculatorServive = inject(CalculatorService);
-  // Se usa `computed` para crear propiedades reactivas basadas en las señales definidas ene l servicio CalculatorService. Esto significa que las propiedades reactivas (`resultText`, `subResultText`, y `lastOperator`) se actualizarán automáticamente cada vez que cambien las señales en el servicio.
+  // Se usa `computed` para crear propiedades reactivas basadas en las señales definidas en el servicio CalculatorService. Esto significa que las propiedades reactivas (`resultText`, `subResultText`, y `lastOperator`) se actualizarán automáticamente cada vez que cambien las señales en el servicio.
   public resultText = computed(() => this.calculatorServive.resultText());
   public subResultText = computed(() => this.calculatorServive.subResultText());
   public lastOperator = computed(() => this.calculatorServive.lastOperator());
 
 
 
-  public calculatorButtons = viewChildren(CalculatorButtonComponent) //quiero que busque todos los CalculatorButtonComponent, que en nuestro calculator.component.html tengo un CalculatorButtonComponent para cada tecla de la calculadora.
+  public calculatorButtons = viewChildren(CalculatorButtonComponent) //quiero que busque todos los CalculatorButtonComponent, ya que en nuestro calculator.component.html tengo un CalculatorButtonComponent para cada tecla de la calculadora.
 
   handleClick(key:string) { //Este es un método que recibe un parámetro key, que será el valor de la tecla presionada en el teclado.
     this.calculatorServive.constructNumber(key);
@@ -39,12 +39,13 @@ export class CalculatorComponent {
     const keyEquivalents: Record<string, string> = { //Es un Record<string, string>, lo que significa que es un objeto cuya clave y valor son ambos de tipo string. En este caso, las claves son nombres de teclas de un teclado físico, y los valores son las teclas equivalentes en la calculadora.
       Escape: 'C', //si resiono Scape en el teclado fisico, quiero que mande a mi calculadora (a mi componente) la C, para que el Scape del teclado fisico equivalga al boton C de la calculadora.
       Clear: 'C',
-      '*': 'X',
+      'x': '*',
       '/': '÷',
-      Enter: '=',
+      "Enter": '=',
     }
 
     const key = event.key; // se está capturando la tecla presionada por el usuario. event.key contiene el valor de la tecla física que se presionó.
+    console.log(key)
 
     this.handleClick(keyEquivalents[key] ?? key); //El operador de coalescencia nula (??) devuelve el valor de la derecha si el valor de la izquierda es null o undefined. En este caso, si keyEquivalents[key] no tiene un valor mapeado (no hay una equivalencia para la tecla presionada), se devuelve la tecla original (key).
 
