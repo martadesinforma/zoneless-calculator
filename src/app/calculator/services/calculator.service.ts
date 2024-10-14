@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 
 const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-const operators = ['+', '-', '*', '/'];
+const operators = ['+', '-', '*', '/', '÷'];
 const specialOperators = ['+/-', '%', '=', '.', 'C', 'Backspace']; //Backspace es el boton de borrar en el teclado fisico y la C es el boton esc del teclado fisico
 
 @Injectable({
@@ -18,16 +18,16 @@ export class CalculatorService {
 
 
   public constructNumber(value: string): void { //value es el valor del teclado fisico que estoy pulsando
-
+    console.log(value)
     //validar los input (lo que el usuario teclea)
     if (![...numbers, ...operators, ...specialOperators].includes(value)) { //Usando ...numbers, ...operators y ...specialOperators dentro de un nuevo array, estás creando un único array que contiene todos los elementos de los tres arrays. Si hubieras pasado los tres arrays individualmente sin el spread operator (por ejemplo, [numbers, operators, specialOperators]), estarías creando un array de arrays (anidado), lo que no es lo que se necesita aquí. Ejemplo sin el spread operator: [['0','1',...], ['+', '-',...], ['+/-', '%', ...]]
       console.log('invalid input', value);
       return;
     }
 
-    //validar =
+    //validar =. En el teclado fisico   Enter: '='.
     if (value === '=') {
-      //TODO
+      this.calculateResult();
       return;
     }
 
@@ -43,6 +43,9 @@ export class CalculatorService {
     //TODO: revisar cuando tengamos numeros negativos
     if (value === 'Backspace') {
       if (this.resultText() === '0') return; //si el resultado es 0, aunque teclé el boton de borrar, no se puede eliminar nada
+      if (this.resultText().includes('-') && this.resultText().length === 2) {
+        this.resultText.set('0');
+      }
       if (this.resultText().length === 1) {
         this.resultText.set('0');
         return;
@@ -54,6 +57,8 @@ export class CalculatorService {
 
     //Aplicar operadores
     if (operators.includes(value)) {
+     /*  this.calculateResult(); */
+
       this.lastOperator.set(value);
       this.subResultText.set(this.resultText());
       this.resultText.set('0');
@@ -112,6 +117,37 @@ export class CalculatorService {
       return;
     }
 
+  }
+
+  public calculateResult() { //tenemos que transformar los string a numeros
+    const number1 = parseFloat(this.subResultText()); //parseFloat() es una función que convierte una cadena de texto (string) en un número decimal. Si la cadena empieza con un valor que no puede ser convertido a un número (como letras o caracteres no numéricos), parseFloat() devolverá NaN (Not-a-Number). Si la cadena tiene un valor numérico válido al principio, lo convierte en un número de tipo float (decimal). Por ejemplo, si this.subResultText() devuelve "5" (string), parseFloat("5") lo convierte en el número 5
+    const number2 = parseFloat(this.resultText());
+
+    let result = 0;
+
+    switch (this.lastOperator()) {
+      case '+':
+        result = number1 + number2;
+        break;
+      case '-':
+        result = number1 - number2;
+        break;
+      case '/':
+        result = number1 / number2;
+        break;
+      case '÷':
+        result = number1 / number2;
+        break;
+      case 'x':
+        result = number1 * number2;
+        break;
+      case '*':
+        result = number1 * number2;
+        break;
+    }
+
+    this.resultText.set(result.toString()); //El resultado de la operación se convierte en cadena de texto (toString()
+    this.subResultText.set('0');
 
   }
 
