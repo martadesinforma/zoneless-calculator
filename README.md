@@ -23,6 +23,8 @@
 
 11. Computed Signals: Se van a utilizar en el calculator.component.ts. Se usa `computed` para crear propiedades reactivas basadas en las señales definidas en el servicio CalculatorService. Esto significa que las propiedades reactivas (`resultText`, `subResultText`, y `lastOperator`) se actualizarán automáticamente cada vez que cambien las señales en el servicio.
 
+12. Testing
+
 
 
 
@@ -34,6 +36,7 @@
 
 1. 2. Carpeta services:
 - calculator service : lo vamos a injectar en el componente calculator y lo vamos a usar en la función  handleClick(key) del componente calculator
+- calculator.service.spec.ts
 
 1. 3. Carpeta views:
 - calculator-view component
