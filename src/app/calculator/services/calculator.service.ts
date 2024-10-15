@@ -10,9 +10,9 @@ const specialOperators = ['+/-', '%', '=', '.', 'C', 'Backspace']; //Backspace e
 export class CalculatorService {
 
   //numero final que he construido que aparece en la pantalla de la calculadora
-  public resultText = signal('10');
+  public resultText = signal('0');
   //resultado anterior que aparece en la pantalla de la calculadora
-  public subResultText = signal('20');
+  public subResultText = signal('0');
   //operador que aparece en la pantalla de la calculadora
   public lastOperator = signal('+');
 
