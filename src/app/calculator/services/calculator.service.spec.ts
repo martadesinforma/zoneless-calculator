@@ -61,6 +61,7 @@ describe('CalculatorService', () => {//describe es un agrupador de pruebas. La i
   });
 
 
+  // Verifica que la suma de dos números se calcula correctamente.
   it('should calculate result correctly for addition', ()=> {
     service.constructNumber('1');
     service.constructNumber('+');
@@ -71,6 +72,7 @@ describe('CalculatorService', () => {//describe es un agrupador de pruebas. La i
   });
 
 
+  // Verifica que la resta de dos números se calcula correctamente.
   it('should calculate result correctly for subtraction', ()=> {
     service.constructNumber('5');
     service.constructNumber('-');
@@ -81,6 +83,7 @@ describe('CalculatorService', () => {//describe es un agrupador de pruebas. La i
   });
 
 
+  //Verifica que la multiplicacion de dos números se calcula correctamente.
   it('should calculate result correctly for multiplication', ()=> {
     service.constructNumber('3');
     service.constructNumber('*');
@@ -91,6 +94,7 @@ describe('CalculatorService', () => {//describe es un agrupador de pruebas. La i
   });
 
 
+  // Verifica que la division de dos números se calcula correctamente.
   it('should calculate result correctly for division', ()=> {
     service.constructNumber('1'); //en el teclado, primero escribes el 1 y despues el 0 para escribir el numero 10
     service.constructNumber('0');
@@ -102,4 +106,66 @@ describe('CalculatorService', () => {//describe es un agrupador de pruebas. La i
   });
 
 
+  //Verifica que los números decimales se manejan correctamente y no se permiten múltiples puntos decimales.
+  it('should handle decimal point correctly', ()=> {
+    service.constructNumber('1');
+    service.constructNumber('.');
+    service.constructNumber('5');
+
+    expect(service.resultText()).toBe('1.5');
+    service.constructNumber('.');
+    expect(service.resultText()).toBe('1.5');
+  });
+
+
+  //Verifica que los números decimales que comienzan con 0 se manejan correctamente.
+  it('should handle decimal point correctly starting with zero', ()=> {
+    service.constructNumber('0');
+    service.constructNumber('.');
+    service.constructNumber('.');
+    service.constructNumber('.');
+    service.constructNumber('0');
+
+    expect(service.resultText()).toBe('0.0');
+  });
+
+
+  //Verifica que el cambio de signo (+/-) funciona correctamente, alternando entre valores positivos y negativos.
+  it('should handle sign change correctly', ()=> {
+    service.constructNumber('1');
+    service.constructNumber('+/-');
+    expect(service.resultText()).toBe('-1');
+    service.constructNumber('+/-');
+    expect(service.resultText()).toBe('1');
+  });
+
+
+  //Verifica que la funcionalidad de retroceso (Backspace) elimina correctamente los dígitos uno por uno.
+  it('should handle backspace correctly', () => {
+    service.resultText.set('123');
+
+    service.constructNumber('Backspace');
+    expect(service.resultText()).toBe('12');
+    service.constructNumber('Backspace');
+    expect(service.resultText()).toBe('1');
+    service.constructNumber('Backspace');
+    expect(service.resultText()).toBe('0');
+    service.constructNumber('Backspace');
+    expect(service.resultText()).toBe('0');
+  });
+
+
+  //Verifica que el texto del resultado no supera la longitud máxima permitida de 10 dígitos.
+  it('should handle max length correctly', ()=> {
+    for(let i = 0; i < 10; i++) {
+      service.constructNumber('1');
+    };
+    expect(service.resultText().length).toBe(10);
+
+    service.constructNumber('1');
+    expect(service.resultText().length).toBe(10);
+  });
+
 })
+
+
