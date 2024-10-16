@@ -32,7 +32,7 @@ export class CalculatorService {
     }
 
     //validar C
-    if (value === 'C') { //todo se resetea al valor inicial, se limpian los resultados
+    if (value === 'C') { //los valores se resetean al valor inicial, se limpian los resultados
       this.resultText.set('0');
       this.subResultText.set('0');
       this.lastOperator.set('+');
