@@ -8,6 +8,6 @@ Si la expresión devuelve false, la clase is-command se eliminará del elemento 
   [class.is-pressed]="isPressed()"
   (click)="handleClick()"
   >
-    <ng-content></ng-content>
+    <ng-content></ng-content> <!-- se proyecta el contenido desde calculator.component.html y se obtiene en este componente -->
   </button>
 
