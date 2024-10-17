@@ -1,4 +1,12 @@
+## Pasos a seguir para hacer uso de este proyecto
+
+ 1. Clonar el proyecto
+ 2. Ejecutar ```npm install``` 
+ 3. Ejecutar la app ```ng serve -o```
+
+
 # Este es un breve listado del contenido del proyecto:
+
 1. Uso de Standalone components
 
 2. Tailwind: Para instalarlo, hemos escrito en la terminal ` npm install -D tailwindcss postcss autoprefixer` y `npx tailwindcss init`. En el archivo tailwind.config.js que se ha creado tenemos que copiar este codigo `"./src/**/*.{html,ts}"`. En el archivo styles.css tenemos que copiar este codigo `@tailwind base; @tailwind components; @tailwind utilities`. Ahora en la terminal cancelamos el ng serve-o que habíamos lanzado al principio cuando comienzas el proyecto y lo vuelves a lanzar.
@@ -24,11 +32,16 @@
 11. Computed Signals: Se van a utilizar en el calculator.component.ts. Se usa `computed` para crear propiedades reactivas basadas en las señales definidas en el servicio CalculatorService. Esto significa que las propiedades reactivas (`resultText`, `subResultText`, y `lastOperator`) se actualizarán automáticamente cada vez que cambien las señales en el servicio.
 
 12. Testing
+Si yo hago  un "npm run test", presiono "Enter" todo el testing va a suceder internamente en la consola sin abrir el navegador web.
 
+Si yo hago un "ng test" y presiono "Enter" todo el testing se va a mostrar en el navegador web.
+
+Si yo hago  un "npm run test:coverage", presiono "Enter", va a levantar el navegador web y en la terminal se va a mostrar que porcentaje de la aplicación está probada.
 
 
 
 # Estructura de esta aplicación:
+
 1. Carpeta calculator:
 1. 1. Carpeta components:
 - calculator component
