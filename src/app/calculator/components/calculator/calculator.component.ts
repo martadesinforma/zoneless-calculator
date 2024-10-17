@@ -45,7 +45,7 @@ export class CalculatorComponent {
     }
 
     const key = event.key; // se está capturando la tecla presionada por el usuario. event.key contiene el valor de la tecla física que se presionó.
-    console.log(key)
+
 
     this.handleClick(keyEquivalents[key] ?? key); //El operador de coalescencia nula (??) devuelve el valor de la derecha si el valor de la izquierda es null o undefined. En este caso, si keyEquivalents[key] no tiene un valor mapeado (no hay una equivalencia para la tecla presionada), se devuelve la tecla original (key).
 
